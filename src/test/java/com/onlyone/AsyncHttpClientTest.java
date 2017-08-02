@@ -1,11 +1,18 @@
 package com.onlyone;
 
+import io.netty.handler.codec.http.HttpHeaders;
+
+import java.io.ByteArrayOutputStream;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.asynchttpclient.AsyncCompletionHandler;
+import org.asynchttpclient.AsyncHandler;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClient;
+import org.asynchttpclient.HttpResponseBodyPart;
+import org.asynchttpclient.HttpResponseHeaders;
+import org.asynchttpclient.HttpResponseStatus;
 import org.asynchttpclient.RequestBuilder;
 import org.asynchttpclient.Response;
 import org.junit.Test;
@@ -49,5 +56,59 @@ public class AsyncHttpClientTest {
         }).get();
 
         System.out.println("最新的结果：" + result);
+    }
+
+    
+    /**
+     * 服务端有响应时即可立即读取，不用等到所有内容全响应过来。适用于数据量比较大的网络传输
+     */
+    @Test
+    public void testAsyncWithQueryParam_3() throws InterruptedException, ExecutionException {
+        AsyncHttpClient c = new DefaultAsyncHttpClient();
+        Future<String> f = c.prepareGet("http://www.kuaidi100.com/query?type=yuantong&postid=11111111111")
+                .execute(new AsyncHandler<String>() {
+
+               private ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+
+               @Override
+               public void onThrowable(Throwable t) {
+
+               }
+
+               @Override
+               public State onBodyPartReceived(HttpResponseBodyPart bodyPart)
+                                                                             throws Exception {
+                   bytes.write(bodyPart.getBodyPartBytes());
+                   return State.CONTINUE;
+               }
+
+               @Override
+               public State onStatusReceived(HttpResponseStatus responseStatus)
+                                                                               throws Exception {
+                   int statusCode = responseStatus.getStatusCode();
+                   System.out.println(statusCode);
+                   if (statusCode >= 500) {
+                       return State.ABORT;
+                   }
+                   return State.CONTINUE;
+               }
+
+               @Override
+               public State onHeadersReceived(HttpResponseHeaders headers)
+                                                                          throws Exception {
+                   HttpHeaders header = headers.getHeaders();
+                   return State.CONTINUE;
+               }
+
+               @Override
+               public String onCompleted()
+                                          throws Exception {
+                   return bytes.toString("UTF-8");
+               }
+
+           });
+
+        String bodyResponse = f.get();
+        System.out.println(bodyResponse);
     }
 }
