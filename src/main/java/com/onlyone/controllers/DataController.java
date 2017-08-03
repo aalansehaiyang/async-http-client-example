@@ -29,7 +29,6 @@ public class DataController {
         builder.addQueryParam("postid", "11111111111");
 
         AsyncHttpClient asyncHttpClient = new DefaultAsyncHttpClient();
-
         String result = asyncHttpClient.executeRequest(builder.build(), new AsyncCompletionHandler<String>() {
 
             @Override
@@ -56,6 +55,8 @@ public class DataController {
             }
         }).get(10, TimeUnit.SECONDS);
 
+        asyncHttpClient.close();
+        
         return result;
 
     }
