@@ -1,15 +1,39 @@
 # 异步 httpclient
 ---
 
-### 资料
+## 一、 apache版
 
+#### jar包依赖：
+
+```
+ <dependency>
+     <groupId>org.apache.httpcomponents</groupId>
+     <artifactId>httpasyncclient</artifactId>
+     <version>4.1.1</version>
+</dependency>
+```
 
 * [异步的AsyncHttpClient使用详解](https://blog.csdn.net/angjunqiang/article/details/55259170)
-* [java之httpClient 3.x、AsyncHttpClient1.9.x使用总结](https://www.cnblogs.com/xiaoMzjm/p/4564540.html)
+* 
+
+## 二、AsyncHttpClient版
+
+#### 资料：
+
+* [AsyncHttpClient github源代码](https://github.com/AsyncHttpClient/async-http-client)
+* [再谈AsyncHttpClient](http://hongjiang.info/asynchttpclient-v2-0-readtimeout-bug/)
 * [AsyncHttpClient](https://github.com/scruffyfox/AsyncHttpClient)
+* [java之httpClient 3.x、AsyncHttpClient1.9.x使用总结](https://www.cnblogs.com/xiaoMzjm/p/4564540.html)
 
+#### jar包依赖：
 
-### 代码案例
+```
+<dependency>
+	<groupId>org.asynchttpclient</groupId>
+	<artifactId>async-http-client</artifactId>
+	<version>2.0.32</version>
+</dependency>
+```
 
 * com.onlyone.AsyncHttpClientTest#asyncHttpClient_prepareGet
 
