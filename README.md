@@ -48,4 +48,22 @@
 
 服务端有响应时即可立即读取，不用等到所有内容全响应过来。适用于数据量比较大的网络传输
 
-* 
+
+
+## 三、okhttp
+
+#### 资料：
+
+* [源码](https://github.com/square/okhttp)
+* [基本使用——OkHttp3详细使用教程](https://blog.csdn.net/xx326664162/article/details/77714126)
+* [Okhttp3基本使用](https://www.jianshu.com/p/da4a806e599b)
+
+#### jar 包依赖：
+
+```
+<dependency>
+  <groupId>com.squareup.okhttp3</groupId>
+  <artifactId>okhttp</artifactId>
+  <version>3.11.0</version>
+</dependency>
+```
