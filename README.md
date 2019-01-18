@@ -19,6 +19,8 @@
 
 ## 二、AsyncHttpClient版（推荐）
 
+`从pom依赖可以发现，底层依赖于Netty的NIO异步事件通知模式来实现非阻塞！`
+
 #### 资料：
 
 * [源码](https://github.com/AsyncHttpClient/async-http-client)
