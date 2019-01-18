@@ -17,13 +17,14 @@
 * [异步的AsyncHttpClient使用详解](https://blog.csdn.net/angjunqiang/article/details/55259170)
 * 
 
-## 二、AsyncHttpClient版
+## 二、AsyncHttpClient版（推荐）
 
 #### 资料：
 
-* [AsyncHttpClient github源代码](https://github.com/AsyncHttpClient/async-http-client)
+* [源码](https://github.com/AsyncHttpClient/async-http-client)
+
 * [再谈AsyncHttpClient](http://hongjiang.info/asynchttpclient-v2-0-readtimeout-bug/)
-* [AsyncHttpClient](https://github.com/scruffyfox/AsyncHttpClient)
+
 * [java之httpClient 3.x、AsyncHttpClient1.9.x使用总结](https://www.cnblogs.com/xiaoMzjm/p/4564540.html)
 
 #### jar包依赖：
@@ -48,6 +49,10 @@
 
 服务端有响应时即可立即读取，不用等到所有内容全响应过来。适用于数据量比较大的网络传输
 
+* com.onlyone.AsyncTimeoutTest#asyncHttpClient_prepareGet
+
+超时测试
+
 
 
 ## 三、okhttp
@@ -57,6 +62,8 @@
 * [源码](https://github.com/square/okhttp)
 * [基本使用——OkHttp3详细使用教程](https://blog.csdn.net/xx326664162/article/details/77714126)
 * [Okhttp3基本使用](https://www.jianshu.com/p/da4a806e599b)
+* [AsyncHttpClient](https://github.com/scruffyfox/AsyncHttpClient)
+
 
 #### jar 包依赖：
 

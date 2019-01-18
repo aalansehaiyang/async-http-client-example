@@ -4,12 +4,15 @@ import org.asynchttpclient.AsyncCompletionHandler;
 import org.asynchttpclient.DefaultAsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClientConfig;
 import org.asynchttpclient.Response;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 /**
  * <pre>
  * 一些配置的设置
  * &#64;author onlyone
- *
  * </pre>
  */
 public class AsyncTimeoutTest {
@@ -27,12 +30,13 @@ public class AsyncTimeoutTest {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public void asyncHttpClient_prepareGet() throws InterruptedException, ExecutionException, IOException {
 
         // 读超时设置为2ms
-        DefaultAsyncHttpClientConfig config = new DefaultAsyncHttpClientConfig.Builder().setReadTimeout(2).build();
+        DefaultAsyncHttpClientConfig config = new DefaultAsyncHttpClientConfig.Builder().setReadTimeout(20).build();
         org.asynchttpclient.AsyncHttpClient cli = new DefaultAsyncHttpClient(config);
-        cli.prepareGet("https://www.github.com/").execute(new MyCallback());
+        cli.prepareGet("http://www.kuaidi100.com/query?type=yuantong&postid=11111111111").execute(new MyCallback());
 
         // wait and quit
         Thread.sleep(1000);
