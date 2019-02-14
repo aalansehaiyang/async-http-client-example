@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.asynchttpclient.*;
+import org.asynchttpclient.proxy.ProxyServer;
 import org.junit.Test;
 
 /**
@@ -26,9 +27,15 @@ public class AsyncHttpClientTest {
     public void asyncHttpClient_executeRequest_withAsyncHandler() throws InterruptedException, ExecutionException {
 
         RequestBuilder builder = new RequestBuilder();
+        builder.setMethod("POST");
         builder.setUrl("http://www.kuaidi100.com/query");
         builder.addQueryParam("type", "yuantong");
-        builder.addQueryParam("postid", "11111111111");
+        builder.addQueryParam("postid", "818970033070");
+        // 设置代理
+        // builder.setProxyServer(new ProxyServer.Builder("127.0.0.1", 8888).build());
+        // 两种格式都支持
+        builder.setHeader(HttpHeaders.Names.CONTENT_TYPE, "application/x-www-form-urlencoded");
+        // builder.setHeader(HttpHeaders.Names.CONTENT_TYPE, "application/json");
 
         AsyncHttpClient asyncHttpClient = new DefaultAsyncHttpClient();
 
